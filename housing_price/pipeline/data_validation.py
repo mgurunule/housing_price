@@ -7,17 +7,13 @@ from housing_price.constants.common_constants import (
 )
 import pandas as pd
 
-from housing_price.logger import logger
-
-logger = logger.getChild(__name__)
-
 
 class DataValidation:
     """
         This class shall be used for handling all the validation done
         on the raw Prediction Detail.
     """
-    def __init__(self, path):
+    def __init__(self, path, logger):
         self.schema_path = os.path.join(path, SCHEMA_FILE)
         self.logger = logger
 

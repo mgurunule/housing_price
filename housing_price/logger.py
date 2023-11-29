@@ -1,4 +1,6 @@
+from datetime import datetime
 import logging.config
+import os
 import sys
 
 
@@ -9,6 +11,10 @@ default_stream_handler = logging.StreamHandler(sys.stdout)
 default_stream_handler.setFormatter(logging.Formatter(
     fmt=DEFAULT_FORMAT, datefmt=DEFAULT_TIME_FORMAT))
 
+
+file_name = "LOG_" + str(datetime.now())
+file_name = file_name.replace(" ", "_").replace(":", "_").replace(".", "_") + ".log"
+FILE_NAME = r"logs\\" + file_name
 
 # fmt: off
 LOGGING_CONFIG = {
@@ -21,11 +27,11 @@ LOGGING_CONFIG = {
         },
     },
     "handlers": {
-        "console": {
+        "file_handler": {
             "level": "DEBUG",
             "formatter": "standard",
-            "class": "logging.StreamHandler",
-            "stream": "ext://sys.stdout",  # Default is stderr
+            "class": "logging.FileHandler",
+            "filename": FILE_NAME,
         },
         "null": {
             "level": "DEBUG",
@@ -35,7 +41,7 @@ LOGGING_CONFIG = {
     },
     "loggers": {
         "": {
-            "handlers": ["console"],
+            "handlers": ["file_handler"],
             "level": "DEBUG",
             "propagate": True,
         },
@@ -54,3 +60,4 @@ LOGGING_CONFIG = {
 # fmt: on
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger("housing_price")
+

@@ -1,3 +1,6 @@
+app_try.py
+
 venv/
 __pycache__/
 .idea/
+logs/

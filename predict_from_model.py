@@ -9,9 +9,7 @@ from housing_price.constants.db_constants import (
     PREDICTED_DATA_TABLE_NAME,
 )
 from housing_price.database.db_operations import DataBaseOperation
-from housing_price.logger import logger
 import joblib
-logger = logger.getChild(__name__)
 
 
 class Prediction:
@@ -19,10 +17,10 @@ class Prediction:
         class to perform load the model and perform prediction
 
     """
-    def __init__(self, current_path):
+    def __init__(self, current_path, logger):
         self.path = current_path
         self.logger = logger
-        self.db_operations = DataBaseOperation(current_path)
+        self.db_operations = DataBaseOperation(current_path, logger)
 
     def load_model(self):
         """

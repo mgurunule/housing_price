@@ -1,10 +1,8 @@
 import pandas as pd
-from housing_price.logger import logger
 from housing_price.constants.common_constants import (
     COLUMN_FOR_ENCODING,
     ENCODED_COLUMNS
 )
-logger = logger.getChild(__name__)
 
 
 class DataTransformation:
@@ -13,7 +11,7 @@ class DataTransformation:
         before loading it in Databse.
 
     """
-    def __init__(self):
+    def __init__(self, logger):
         self.logger = logger
 
     def drop_missing_values(

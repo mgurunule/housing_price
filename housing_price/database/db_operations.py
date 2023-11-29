@@ -1,5 +1,4 @@
 import pandas as pd
-from housing_price.logger import logger
 import os
 import sqlite3
 from housing_price.constants.db_constants import (
@@ -12,9 +11,6 @@ from housing_price.constants.db_constants import (
 )
 
 
-logger = logger.getChild(__name__)
-
-
 class DataBaseOperation:
     """
         Description: : This class shall be used for handling all the SQL operations
@@ -25,7 +21,7 @@ class DataBaseOperation:
                 4) DB selection  : Fetching the data from DataBase
     """
 
-    def __init__(self, path):
+    def __init__(self, path, logger):
         self.logger = logger
         self.path = path
 

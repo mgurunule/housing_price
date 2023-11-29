@@ -11,17 +11,14 @@ import pandas as pd
 from housing_price.database.db_operations import DataBaseOperation
 from housing_price.pipeline.data_transformation import DataTransformation
 from housing_price.pipeline.data_validation import DataValidation
-from housing_price.logger import logger
-
-logger = logger.getChild(__name__)
 
 
 class ValidationTransformation:
-    def __init__(self, path):
+    def __init__(self, path, logger):
         self.path = path
-        self.raw_data = DataValidation(path)
-        self.data_transform = DataTransformation()
-        self.db_operations = DataBaseOperation(path)
+        self.raw_data = DataValidation(path, logger)
+        self.data_transform = DataTransformation(logger)
+        self.db_operations = DataBaseOperation(path, logger)
         self.logger = logger
 
     def perform_validation_transformation(self, input_data: pd.DataFrame

@@ -1,15 +1,17 @@
 from flask import Flask, request, jsonify
 from flask import Response
-
+from housing_price.logger import logger
 import os
 import pandas as pd
 
 from validation_transformation import ValidationTransformation
 from predict_from_model import Prediction
 import warnings
+
 warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
+
 
 current_path = os.getcwd()
 
@@ -17,31 +19,30 @@ current_path = os.getcwd()
 @app.route("/predict", methods=['POST'])
 def predict_route():
     try:
-
-        # Get input data from the request
+        logging = logger.getChild(__name__)
+        #Get input data from the request
         input_data = request.get_json()
         input_features = pd.DataFrame(input_data)
-        print(input_features)
-
+        
         # First perform validation and transformation of the data
         # Object initialization
-        val_transform = ValidationTransformation(current_path)
-
+        val_transform = ValidationTransformation(current_path, logging)
+        
         # calling the prediction_validation function
         transformed_data = val_transform.perform_validation_transformation(
-            input_data)
-
+            input_features)
+        
         if not isinstance(transformed_data, pd.DataFrame):
             return jsonify({'prediction': "ERROR OCCURED"})
-
-        pred = Prediction(current_path)  # object initialization
-
+        
+        pred = Prediction(current_path, logging)  # object initialization
+        
         # predicting for dataset present in databse
-
+        
         predicted_data = pred.perform_prediction_from_model(transformed_data)
-
-        print(predicted_data)
-        return jsonify({'prediction': 10})
+        result_dict = predicted_data.to_dict(orient='records')
+        
+        return jsonify(result_dict)
 
     except ValueError as ve:
         return Response(f"ERROR OCCURED. Got "
@@ -56,4 +57,4 @@ def predict_route():
 
 port = int(os.getenv("PORT", 5001))
 if __name__ == "__main__":
-    app.run(port=port, debug=True)
+    app.run(port=port)
