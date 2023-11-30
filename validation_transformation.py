@@ -29,7 +29,6 @@ class ValidationTransformation:
         self.data_transform = DataTransformation(self.logger)
         self.db_operations = DataBaseOperation(path, self.logger)
 
-
     def perform_validation_transformation(self, input_data: pd.DataFrame
                                           ) -> pd.DataFrame:
 

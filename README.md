@@ -1,4 +1,3 @@
-# DTSE Data Engineer (ETL) assignment
 
 ## Project Overview
 
@@ -71,12 +70,14 @@ Describe the structure of your project, including key directories and files.
 housing_price/                           
 │      
 ├── housing_price/                       
-│   ├── constants                  
-│   ├── databse           
-│   ├── pipeline           
-│   ├── trained_model         
-│   ├── training_data                       
-├── tests/                                        
+│   ├── constants/                  
+│   ├── databse/           
+│   ├── pipeline/           
+│   ├── trained_model/         
+│   ├── training_data/   
+│   └── logger.py                    
+├── tests/ 
+├── logs/                                       
 ├── app.py                                      
 ├── predict_from_model.py                                              
 ├── requirements.txt                                        
@@ -98,6 +99,8 @@ housing_price/
 * `housing_price/trained_model/model.joblib` - the computed model you should use 
 * `housing_price/training_data/housing.csv` - data file to process and apply a model to it for creating predictions
 * `housing_price/logger.py` - main logger script.
+* `logs/` - log file of each run.
+* `tests/` - pytest cases.
 
 
 ## Methods
