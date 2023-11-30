@@ -1,0 +1,28 @@
+2023-11-30T17:46:00.417 INFO validation_transformation.py 52-  Start the Validation of Raw data
+2023-11-30T17:46:00.424 INFO data_validation.py 36-  Schema details retrieved from Schema json
+2023-11-30T17:46:00.424 INFO validation_transformation.py 65-  column length of input dataframe matched with schema
+2023-11-30T17:46:00.425 INFO validation_transformation.py 75-  No complete missing column found
+2023-11-30T17:46:00.426 INFO validation_transformation.py 82-  Valid column name in input data
+2023-11-30T17:46:00.426 INFO validation_transformation.py 90-  Data Validation done , Data Transformation started
+2023-11-30T17:46:00.428 INFO data_transformation.py 48-  Dropped 0 rows from input dataframe
+2023-11-30T17:46:00.430 INFO data_transformation.py 100- Encoding done for categorical features
+2023-11-30T17:46:00.431 INFO validation_transformation.py 113-  Re-arranging columns done
+2023-11-30T17:46:00.431 INFO validation_transformation.py 118-  Re-naming columns for databse done
+2023-11-30T17:46:00.431 INFO validation_transformation.py 119-  Data transformation done
+2023-11-30T17:46:00.431 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-11-30T17:46:00.452 INFO db_operations.py 92- transformed_data_table table created successfully
+2023-11-30T17:46:00.452 INFO db_operations.py 98-  Closed database successfully
+2023-11-30T17:46:00.453 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-11-30T17:46:00.462 INFO db_operations.py 122-  Records inserted Successfully in transformed_data_table
+2023-11-30T17:46:00.463 INFO db_operations.py 137-  Closed database successfully
+2023-11-30T17:46:04.470 INFO predict_from_model.py 36-  Model loaded successfully.
+2023-11-30T17:46:04.475 INFO predict_from_model.py 101-  Prediction done successfully
+2023-11-30T17:46:04.475 INFO predict_from_model.py 103-  Creating the Prediction table
+2023-11-30T17:46:04.477 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-11-30T17:46:04.500 INFO db_operations.py 92- predicted_data_table table created successfully
+2023-11-30T17:46:04.500 INFO db_operations.py 98-  Closed database successfully
+2023-11-30T17:46:04.500 INFO predict_from_model.py 108-  Loading the data to Prediction table
+2023-11-30T17:46:04.501 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-11-30T17:46:04.510 INFO db_operations.py 122-  Records inserted Successfully in predicted_data_table
+2023-11-30T17:46:04.510 INFO db_operations.py 137-  Closed database successfully
+2023-11-30T17:46:04.513 INFO _internal.py 96- 127.0.0.1 - - [30/Nov/2023 17:46:04] "POST /predict HTTP/1.1" 200 -
