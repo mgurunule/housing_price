@@ -43,7 +43,7 @@ class DataBaseOperation:
         on Failure  : Raise ConnectionError
         """
         try:
-            db_complete_path = os.path.join(self.path, DB_DIR, DB_NAME)
+            db_complete_path = os.path.join(self.path, DB_DIR, database_name)
 
             conn = sqlite3.connect(db_complete_path)
 
