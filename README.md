@@ -122,13 +122,13 @@ housing_price/
     - loading the model
     - perform prediction
 
-### 4) DataBase Operations
-      For this project 2 tables are created.
+### 4) DataBase Operations 
+      For this project Sqlite3 database has been used and 2 tables are created.
       1) predicted_data_table : table to save predicted output.
       2) transformed_data_table : table to save transformed output.
       
       (structure of tables are present in below location) 
-          -> "housing_price/databse/query"
+          -> "housing_price/databse/query/"
 
       Currently below opearation are possible.
         - DB connection      : create connection with db
