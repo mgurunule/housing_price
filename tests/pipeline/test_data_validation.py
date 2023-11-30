@@ -135,7 +135,44 @@ def test_is_invalid_data_type(data_validation_instance):
     assert result is True  # Invalid data types
     assert invalid_dtypes_column == ['A', 'B']  # Columns with invalid data types
 
+@pytest.fixture
+def sample_data():
+    # Create a sample DataFrame for testing
+    data = {
+        'col1': ['1', '2', '3'],
+        'col2': ['4.5', '5.6', '6.7']
+    }
+    return pd.DataFrame(data)
 
+
+def test_convert_column_type(data_validation_instance, sample_data):
+
+    # Columns to be converted to float
+    columns_to_convert = ['col1', 'col2']
+
+    # Call the method on the sample data
+    result = data_validation_instance.convert_column_type(
+        sample_data.copy(), columns_to_convert)
+
+    # Check if the columns have been converted to float
+    assert result['col1'].dtype == 'float64'
+    assert result['col2'].dtype == 'float64'
+
+
+def test_convert_column_type_with_nan(data_validation_instance, sample_data):
+
+    # Introduce a non-numeric value
+    sample_data.at[0, 'col1'] = 'abc'
+
+    # Columns to be converted to float
+    columns_to_convert = ['col1', 'col2']
+
+    # Call the method on the sample data
+    result = data_validation_instance.convert_column_type(sample_data.copy(), columns_to_convert)
+
+    # Check if the columns have been converted to float (ignoring non-numeric values)
+    assert result['col1'].dtype == 'float64'
+    assert result['col2'].dtype == 'float64'
 
 
 

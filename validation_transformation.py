@@ -1,6 +1,7 @@
 from housing_price.constants.common_constants import (
     COLUMN_FOR_ENCODING,
     COLUMNS_FOR_MODEL,
+    OBJ_TO_FLOAT_COL,
     RENAMING_COL_FOR_DB,
 )
 from housing_price.constants.db_constants import (
@@ -79,6 +80,8 @@ class ValidationTransformation:
                 self.logger.error(f" Invalid columns : {invalid_col_list}")
                 return
             self.logger.info(" Valid column name in input data")
+
+            input_data = self.raw_data.convert_column_type(input_data, OBJ_TO_FLOAT_COL)
 
             invalid_dtypes, invalid_dtypes_column = self.raw_data.\
                 is_invalid_data_type(column_details, input_data)

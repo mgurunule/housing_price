@@ -17,6 +17,13 @@ ENCODED_COLUMNS = ['ocean_proximity_<1H OCEAN',
                    'ocean_proximity_NEAR BAY',
                    'ocean_proximity_NEAR OCEAN']
 NUMBER_OF_COLUMNS = 'number_of_columns'
+OBJ_TO_FLOAT_COL = ['housing_median_age',
+                    'total_rooms',
+                    'total_bedrooms',
+                    'population',
+                    'households',
+                    'median_income',
+                    ]
 SCHEMA_FILE = "schema_prediction.json"
 TRAINED_MODEL_PATH = "housing_price\\trained_model\\model.joblib"
 TARGET_VARIABLE = "MEDIAN_HOUSE_PRICE"

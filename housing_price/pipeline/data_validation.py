@@ -123,6 +123,30 @@ class DataValidation:
         else:
             return invalid_column_names, invalid_col_list
 
+    def convert_column_type(self,
+                            input_data: pd.DataFrame,
+                            obj_float_col: list):
+        """
+           Description:  convert the given list of columns to float
+
+        Parameters
+        ----------
+        input_data: pd.DataFrame
+                input dataframe
+
+        obj_float_col: list of columns that should be converted to float
+        Returns
+        -------
+        pd.DataFrame
+        """
+        try:
+            for columns in obj_float_col:
+                input_data[columns] = pd.to_numeric(input_data[columns], errors='coerce').astype(float)
+
+            return input_data
+        except Exception as e:
+            self.logger.error(f" Error in converting OBJ column to FLOAT {e}")
+
     def is_invalid_data_type(self,
                              column_details: dict,
                              input_data: pd.DataFrame

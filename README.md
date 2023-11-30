@@ -60,6 +60,27 @@ List the prerequisites needed to run your project. Include information about the
    This app.py program takes input in the form of json.
 
 
+   Note: Please use below column name only in independent data.
+          There are checks to validate the columns name in the program.
+
+Valid columns names :  
+ * longitude 
+ * latitude
+ * housing_median_age
+ * total_rooms
+ * total_bedrooms
+ * population
+ * households
+ * median_income
+ * ocean_proximity
+
+These names were taken from feature_names_in attribute of  
+RandomForest model. If we do not need the valid column 
+name check then we can comment the code in comment 
+```is_invalid_column_names()``` call in 
+validation_transformation.py.
+
+
 4) To run all th test case. type ```pytest``` from root directory.
 
 
@@ -111,6 +132,19 @@ housing_price/
     - Verified the name of the columns
     - Verified the type of the columns
     - checked for complete null column
+
+  We are converting type of below columns to float as this 
+  was done with training data.
+* housing_median_age
+* total_rooms
+* total_bedrooms
+* population
+* households
+* median_income
+
+So API will accept values for these columns in both string and numerical format.
+But later it will convert to numerical and non-numeric value if present then that value is converted to 
+NAN and later is dropped in transformation stage.
 
 ### 2) Data Transformation
     Basic transformations were performed for this project.
