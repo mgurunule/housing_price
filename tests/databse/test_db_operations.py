@@ -7,7 +7,7 @@ from housing_price.test_logger import logger
 
 logger = logger.getChild(__name__)
 
-path = os.path.dirname(os.path.dirname(os.getcwd()))
+path = os.getcwd().split("housing_price")[0] + "housing_price"
 
 
 # Define a fixture for creating an instance of DataBaseOperation

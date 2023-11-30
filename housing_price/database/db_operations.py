@@ -44,7 +44,6 @@ class DataBaseOperation:
         """
         try:
             db_complete_path = os.path.join(self.path, DB_DIR, database_name)
-
             conn = sqlite3.connect(db_complete_path)
 
             self.logger.info(f"Opened {database_name} database successfully")
