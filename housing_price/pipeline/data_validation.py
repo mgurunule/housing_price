@@ -4,7 +4,9 @@ from housing_price.constants.common_constants import (
     COL_NAME,
     NUMBER_OF_COLUMNS,
     SCHEMA_FILE,
+    VALID_OCEAN_PROXI_VALUES,
 )
+import numpy as np
 import pandas as pd
 
 
@@ -65,6 +67,36 @@ class DataValidation:
             return True
         else:
             return False
+
+    def is_nan_present(self,
+                       input_data: pd.DataFrame
+                       ) -> tuple[bool, list]:
+        """
+            Description: It will drop the rows having null
+
+        Parameters
+        ----------
+        input_data : pd.DataFrame
+                Input dataframe
+
+        Returns
+        -------
+         tuple[bool, list]
+        """
+        nan_invalid_values = False
+        nan_invalid_columns = []
+        for col in input_data.columns:
+            current_value = input_data.loc[0, col]
+            if isinstance(current_value, float):
+                if np.isnan(current_value) :
+                    nan_invalid_values = True
+                    nan_invalid_columns.append(col)
+            elif isinstance(current_value, object):
+                if current_value not in VALID_OCEAN_PROXI_VALUES:
+                    nan_invalid_values = True
+                    nan_invalid_columns.append(col)
+
+        return nan_invalid_values, nan_invalid_columns
 
     def is_having_missing_values(self,
                                  input_data: pd.DataFrame

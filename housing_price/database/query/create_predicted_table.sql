@@ -13,5 +13,6 @@ Create Table predicted_data_table
             ocean_proximity_ISLAND  int  not null,
             ocean_proximity_NEAR_BAY  int  not null,
             ocean_proximity_NEAR_OCEAN  int  not null,
-            MEDIAN_HOUSE_PRICE  int  not null
+            MEDIAN_HOUSE_PRICE  int  not null,
+            event_datetime DATETIME not null
             )

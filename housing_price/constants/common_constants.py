@@ -17,7 +17,9 @@ ENCODED_COLUMNS = ['ocean_proximity_<1H OCEAN',
                    'ocean_proximity_NEAR BAY',
                    'ocean_proximity_NEAR OCEAN']
 NUMBER_OF_COLUMNS = 'number_of_columns'
-OBJ_TO_FLOAT_COL = ['housing_median_age',
+OBJ_TO_FLOAT_COL = ['longitude', 
+                    'latitude',
+                    'housing_median_age',
                     'total_rooms',
                     'total_bedrooms',
                     'population',
@@ -27,6 +29,10 @@ OBJ_TO_FLOAT_COL = ['housing_median_age',
 SCHEMA_FILE = "schema_prediction.json"
 TRAINED_MODEL_PATH = "housing_price\\trained_model\\model.joblib"
 TARGET_VARIABLE = "MEDIAN_HOUSE_PRICE"
+VALID_OCEAN_PROXI_VALUES = ['NEAR OCEAN', 'INLAND', 'NEAR BAY', '<1H OCEAN',
+                            'ISLAND', 'OUT OF REACH']
+
+
 RENAMING_COL_FOR_DB = {
     'ocean_proximity_<1H OCEAN': 'ocean_proximity_LESS_H_OCEAN',
     'ocean_proximity_NEAR BAY': 'ocean_proximity_NEAR_BAY',

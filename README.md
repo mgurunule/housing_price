@@ -181,3 +181,13 @@ NAN and later is dropped in transformation stage.
 
     Please let me know you feedback. Thanks you.
 
+
+## Queries.
+
+1) OCEAN_PROXIMITY feature has 6 valid values
+   (NEAR BAY,OUT OF REACH, <1H OCEAN, INLAND, NEAR OCEAN, ISLAND) out of which "OUT OF REACH" is 
+   not used during model creation. What if this parameter is passed as input. Should we through 
+   error or just filter is out and continue for prediction.
+   ( Currently I will continue for prediction and will error out
+     only any other value is passed except these 6)
+2) 

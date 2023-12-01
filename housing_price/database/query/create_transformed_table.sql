@@ -12,5 +12,6 @@ Create Table transformed_data_table
             ocean_proximity_INLAND  int  not null,
             ocean_proximity_ISLAND  int  not null,
             ocean_proximity_NEAR_BAY  int  not null,
-            ocean_proximity_NEAR_OCEAN  int  not null
+            ocean_proximity_NEAR_OCEAN  int  not null,
+            event_datetime DATETIME not null
             )

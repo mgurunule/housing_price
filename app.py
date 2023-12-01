@@ -5,8 +5,8 @@ import pandas as pd
 from validation_transformation import ValidationTransformation
 from predict_from_model import Prediction
 import warnings
-
 warnings.filterwarnings("ignore")
+
 
 app = Flask(__name__)
 
@@ -18,7 +18,9 @@ def predict_route():
     try:
         # Get input data from the request
         input_data = request.get_json()
-        input_features = pd.DataFrame(input_data)
+
+        input_series = pd.Series(input_data)
+        input_features = pd.DataFrame(input_series).T
         
         # First perform validation and transformation of the data
         # Object initialization
@@ -29,7 +31,7 @@ def predict_route():
             input_features)
         
         if not isinstance(transformed_data, pd.DataFrame):
-            return jsonify({'prediction': "ERROR OCCURED"})
+            return jsonify({'prediction': "ERROR OCCURED"}), 999
         
         pred = Prediction(current_path, val_transform.logger)  # object initialization
         

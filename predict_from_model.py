@@ -1,3 +1,4 @@
+from datetime import datetime
 import pandas as pd
 
 from housing_price.constants.common_constants import (
@@ -100,15 +101,14 @@ class Prediction:
 
             self.logger.info(" Prediction done successfully")
             # save the prediction in database
-            self.logger.info(" Creating the Prediction table")
-            self.db_operations.create_db_table(
-                DB_NAME,
-                PREDICTED_DATA_TABLE_NAME
-            )
             self.logger.info(" Loading the data to Prediction table")
+
+            table_data = predicted_data.copy()
+            table_data['event_datetime'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
             self.db_operations.insert_into_table(
                 DB_NAME,
-                predicted_data,
+                table_data,
                 PREDICTED_DATA_TABLE_NAME
             )
             return predicted_data

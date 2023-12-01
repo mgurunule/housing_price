@@ -1,3 +1,4 @@
+from datetime import datetime
 from housing_price.constants.common_constants import (
     COLUMN_FOR_ENCODING,
     COLUMNS_FOR_MODEL,
@@ -9,21 +10,19 @@ from housing_price.constants.db_constants import (
     TRANSFORMED_DATA_TABLE_NAME
 )
 import pandas as pd
+from housing_price.logger import logger
 from housing_price.database.db_operations import DataBaseOperation
 from housing_price.pipeline.data_transformation import DataTransformation
 from housing_price.pipeline.data_validation import DataValidation
 
 
 def load_logger():
-    from housing_price.logger import load_logger_config
-    logger = load_logger_config()
     logging = logger.getChild(__name__)
-
     return logging
 
 
 class ValidationTransformation:
-    def __init__(self, path):
+    def __init__(self, path, ):
         self.logger = load_logger()
         self.path = path
         self.raw_data = DataValidation(path, self.logger)
@@ -50,7 +49,13 @@ class ValidationTransformation:
             #############################################################
             # ------------------   DATA VALIDATION ---------------------
             self.logger.info(" Start the Validation of Raw data")
+            input_value_for_logger = ""
 
+            for col in input_data.columns:
+                columns_value = f" {col} : {input_data.loc[0,col]} ,"
+                input_value_for_logger = input_value_for_logger + columns_value
+
+            self.logger.info(input_value_for_logger)
             # 1 extracting value from prediction schema
             column_details, number_of_columns = self.raw_data.\
                 values_from_schema()
@@ -66,28 +71,28 @@ class ValidationTransformation:
                              "dataframe matched with schema")
 
             # 3 validate if any column has complete missing values
-            missing_values, missing_columns = self.raw_data.\
-                is_having_missing_values(input_data)
-            if missing_values:
-                self.logger.error(f" Missing value in {missing_columns}")
-                return
-
-            self.logger.info(" No complete missing column found")
 
             invalid_column_names, invalid_col_list = self.raw_data.\
                 is_invalid_column_names(column_details, input_data)
             if invalid_column_names:
                 self.logger.error(f" Invalid columns : {invalid_col_list}")
-                return
+                return 
             self.logger.info(" Valid column name in input data")
 
             input_data = self.raw_data.convert_column_type(input_data, OBJ_TO_FLOAT_COL)
+
+            nan_invalid_values, nan_invalid_columns = self.raw_data.\
+                is_nan_present(input_data)
+            if nan_invalid_values:
+                self.logger.error(f" Invalid values for columns : {nan_invalid_columns} ")
+                return
 
             invalid_dtypes, invalid_dtypes_column = self.raw_data.\
                 is_invalid_data_type(column_details, input_data)
             if invalid_dtypes:
                 self.logger.error(f" INVALID data type "
                                   f"for {invalid_dtypes_column}")
+                return 
 
             self.logger.info(" Data Validation done , "
                              "Data Transformation started")
@@ -95,12 +100,13 @@ class ValidationTransformation:
             #############################################################
             # ------------------   DATA TRANSFORMATION  ---------------------
 
-            transformed_data = self.data_transform.drop_missing_values(
-                                        input_data)
+            # transformed_data = self.data_transform.drop_missing_values(
+            #                             input_data)
 
-            if transformed_data.empty:
-                self.logger.error(" Empty dataframe, "
-                                  "records cannot be processed further")
+            # if transformed_data.empty:
+            #     self.logger.error(" Empty dataframe, "
+            #                       "records cannot be processed further")
+            #     return
 
             transformed_data = self.data_transform.perform_encoding(
                 input_data, COLUMN_FOR_ENCODING)
@@ -121,27 +127,16 @@ class ValidationTransformation:
             self.logger.info(" Data transformation done")
 
             #############################################################
+            table_data = transformed_data.copy()
             # ------------------   SAVE TRANSFORMED DATA To DATABASE  ---
-
-            # this should be one timer
-
-            self.db_operations.create_db_table(
-                                        DB_NAME,
-                                        TRANSFORMED_DATA_TABLE_NAME
-                                        )
+            table_data['event_datetime'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
             self.db_operations.insert_into_table(
                                         DB_NAME,
-                                        transformed_data,
+                                        table_data,
                                         TRANSFORMED_DATA_TABLE_NAME
                                         )
 
-            # THIS is to fetch the transformed record from databse
-            # this is not required for now
-            # fetched_data = self.db_operations.select_data_from_table(
-            #                             DB_NAME,
-            #                             TRANSFORMED_DATA_TABLE_NAME
-            #                             )
             return transformed_data
 
         except Exception as e:
