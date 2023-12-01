@@ -29,11 +29,8 @@ logging_config = {
         "file_handler": {
             "level": "DEBUG",
             "formatter": "standard",
-            "class": "logging.handlers.TimedRotatingFileHandler",
+            "class": "logging.FileHandler",
             "filename": file_name,
-            'when': 'D',
-            'interval': 1,
-            'backupCount': 7,
         }
     },
     "loggers": {

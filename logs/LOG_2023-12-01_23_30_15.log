@@ -1,0 +1,73 @@
+2023-12-01T23:30:15.883 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:30:15.883 INFO validation_transformation.py 58-  longitude : Null , latitude : 33.89 , housing_median_age : 24.0 , total_rooms : 1332.0 , total_bedrooms : 252.0 , population : 625.0 , households : 230.0 , median_income : 4.4375 , ocean_proximity : <1H OCEAN ,
+2023-12-01T23:30:15.884 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:30:15.884 INFO validation_transformation.py 70-  column length of input dataframe matched with schema
+2023-12-01T23:30:15.895 INFO validation_transformation.py 80-  Valid column name in input data
+2023-12-01T23:30:15.897 ERROR validation_transformation.py 87-  Invalid values for columns : ['longitude'] 
+2023-12-01T23:30:32.639 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:30:32.640 INFO validation_transformation.py 58-  longitude : -122.64 , latitude : 38.01 , housing_median_age : 36.0 , total_rooms : 1336.0 , total_bedrooms : 258.0 , population : 678.0 , households : 249.0 , median_income : 5.5789 , ocean_proximity : NEAR OCEAN ,
+2023-12-01T23:30:32.640 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:30:32.641 INFO validation_transformation.py 70-  column length of input dataframe matched with schema
+2023-12-01T23:30:32.641 INFO validation_transformation.py 80-  Valid column name in input data
+2023-12-01T23:30:32.643 INFO validation_transformation.py 97-  Data Validation done , Data Transformation started
+2023-12-01T23:30:32.645 INFO data_transformation.py 100- Encoding done for categorical features
+2023-12-01T23:30:32.647 INFO validation_transformation.py 121-  Re-arranging columns done
+2023-12-01T23:30:32.647 INFO validation_transformation.py 126-  Re-naming columns for databse done
+2023-12-01T23:30:32.647 INFO validation_transformation.py 127-  Data transformation done
+2023-12-01T23:30:32.649 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-12-01T23:30:32.670 INFO db_operations.py 122-  Records inserted Successfully in transformed_data_table
+2023-12-01T23:30:32.670 INFO db_operations.py 137-  Closed database successfully
+2023-12-01T23:30:36.575 INFO predict_from_model.py 37-  Model loaded successfully.
+2023-12-01T23:30:36.580 INFO predict_from_model.py 102-  Prediction done successfully
+2023-12-01T23:30:36.581 INFO predict_from_model.py 104-  Loading the data to Prediction table
+2023-12-01T23:30:36.581 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-12-01T23:30:36.591 INFO db_operations.py 122-  Records inserted Successfully in predicted_data_table
+2023-12-01T23:30:36.592 INFO db_operations.py 137-  Closed database successfully
+2023-12-01T23:30:36.605 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:30:36.605 INFO validation_transformation.py 58-  longitude : -115.73 , latitude : 33.35 , housing_median_age : 23.0 , total_rooms : 1586.0 , total_bedrooms : 448.0 , population : 338.0 , households : 182.0 , median_income : 1.2132 , ocean_proximity : INLAND ,
+2023-12-01T23:30:36.606 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:30:36.606 INFO validation_transformation.py 70-  column length of input dataframe matched with schema
+2023-12-01T23:30:36.606 INFO validation_transformation.py 80-  Valid column name in input data
+2023-12-01T23:30:36.610 INFO validation_transformation.py 97-  Data Validation done , Data Transformation started
+2023-12-01T23:30:36.612 INFO data_transformation.py 100- Encoding done for categorical features
+2023-12-01T23:30:36.613 INFO validation_transformation.py 121-  Re-arranging columns done
+2023-12-01T23:30:36.614 INFO validation_transformation.py 126-  Re-naming columns for databse done
+2023-12-01T23:30:36.614 INFO validation_transformation.py 127-  Data transformation done
+2023-12-01T23:30:36.616 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-12-01T23:30:36.623 INFO db_operations.py 122-  Records inserted Successfully in transformed_data_table
+2023-12-01T23:30:36.624 INFO db_operations.py 137-  Closed database successfully
+2023-12-01T23:30:36.773 INFO predict_from_model.py 37-  Model loaded successfully.
+2023-12-01T23:30:36.778 INFO predict_from_model.py 102-  Prediction done successfully
+2023-12-01T23:30:36.778 INFO predict_from_model.py 104-  Loading the data to Prediction table
+2023-12-01T23:30:36.779 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-12-01T23:30:36.798 INFO db_operations.py 122-  Records inserted Successfully in predicted_data_table
+2023-12-01T23:30:36.798 INFO db_operations.py 137-  Closed database successfully
+2023-12-01T23:30:36.810 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:30:36.811 INFO validation_transformation.py 58-  longitude : -117.96 , latitude : 33.89 , housing_median_age : 24.0 , total_rooms : 1332.0 , total_bedrooms : 252.0 , population : 625.0 , households : 230.0 , median_income : 4.4375 , ocean_proximity : <1H OCEAN ,
+2023-12-01T23:30:36.811 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:30:36.811 INFO validation_transformation.py 70-  column length of input dataframe matched with schema
+2023-12-01T23:30:36.811 INFO validation_transformation.py 80-  Valid column name in input data
+2023-12-01T23:30:36.814 INFO validation_transformation.py 97-  Data Validation done , Data Transformation started
+2023-12-01T23:30:36.816 INFO data_transformation.py 100- Encoding done for categorical features
+2023-12-01T23:30:36.816 INFO validation_transformation.py 121-  Re-arranging columns done
+2023-12-01T23:30:36.818 INFO validation_transformation.py 126-  Re-naming columns for databse done
+2023-12-01T23:30:36.818 INFO validation_transformation.py 127-  Data transformation done
+2023-12-01T23:30:36.820 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-12-01T23:30:36.829 INFO db_operations.py 122-  Records inserted Successfully in transformed_data_table
+2023-12-01T23:30:36.829 INFO db_operations.py 137-  Closed database successfully
+2023-12-01T23:30:36.981 INFO predict_from_model.py 37-  Model loaded successfully.
+2023-12-01T23:30:36.988 INFO predict_from_model.py 102-  Prediction done successfully
+2023-12-01T23:30:36.988 INFO predict_from_model.py 104-  Loading the data to Prediction table
+2023-12-01T23:30:36.989 INFO db_operations.py 49- Opened housing_price.db database successfully
+2023-12-01T23:30:37.009 INFO db_operations.py 122-  Records inserted Successfully in predicted_data_table
+2023-12-01T23:30:37.010 INFO db_operations.py 137-  Closed database successfully
+2023-12-01T23:30:37.019 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:30:37.019 INFO validation_transformation.py 58-  longitude : Null , latitude : 33.89 , housing_median_age : 24.0 , total_rooms : 1332.0 , total_bedrooms : 252.0 , population : 625.0 , households : 230.0 , median_income : 4.4375 , ocean_proximity : <1H OCEAN ,
+2023-12-01T23:30:37.019 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:30:37.019 INFO validation_transformation.py 70-  column length of input dataframe matched with schema
+2023-12-01T23:30:37.019 INFO validation_transformation.py 80-  Valid column name in input data
+2023-12-01T23:30:37.022 ERROR validation_transformation.py 87-  Invalid values for columns : ['longitude'] 
+2023-12-01T23:30:37.029 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:30:37.030 INFO validation_transformation.py 58-  longitude : Null , latitude : 33.89 , housing_median_age : 24.0 , total_rooms : 1332.0 , total_bedrooms : 252.0 , population : 625.0 ,
+2023-12-01T23:30:37.030 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:30:37.030 ERROR validation_transformation.py 67-  Invalid column length of the input dataframe 

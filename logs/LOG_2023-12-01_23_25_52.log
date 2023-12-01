@@ -1,0 +1,6 @@
+2023-12-01T23:25:52.085 INFO validation_transformation.py 51-  Start the Validation of Raw data
+2023-12-01T23:25:52.086 INFO validation_transformation.py 58-  longitude : Null , latitude : 33.89 , housing_median_age : 24.0 , total_rooms : 1332.0 , total_bedrooms : 252.0 , population : 625.0 , households : 230.0 , median_income : 4.4375 , ocean_proximity : <1H OCEAN ,
+2023-12-01T23:25:52.092 INFO data_validation.py 38-  Schema details retrieved from Schema json
+2023-12-01T23:25:52.092 INFO validation_transformation.py 70-  column length of input dataframe matched with schema
+2023-12-01T23:25:52.105 INFO validation_transformation.py 80-  Valid column name in input data
+2023-12-01T23:25:52.106 ERROR validation_transformation.py 87-  Invalid values for columns : ['longitude'] 

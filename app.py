@@ -27,19 +27,22 @@ def predict_route():
         val_transform = ValidationTransformation(current_path)
 
         # calling the prediction_validation function
-        transformed_data = val_transform.perform_validation_transformation(
+        transformed_data, message = val_transform.perform_validation_transformation(
             input_features)
         
         if not isinstance(transformed_data, pd.DataFrame):
-            return jsonify({'prediction': "ERROR OCCURED"}), 999
+            return jsonify({'error message': message}), 999
         
         pred = Prediction(current_path, val_transform.logger)  # object initialization
         
         # predicting for dataset present in database
         
         predicted_data = pred.perform_prediction_from_model(transformed_data)
-        result_dict = predicted_data.to_dict(orient='records')
-        
+
+        # If want to return dataframe then use below code
+        # result_dict = predicted_data.to_dict(orient='records')
+
+        result_dict = {"MEDIAN_HOUSE_PRICE": float(predicted_data['MEDIAN_HOUSE_PRICE'])}
         return jsonify(result_dict)
 
     except ValueError as ve:

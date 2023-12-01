@@ -10,13 +10,13 @@ from housing_price.constants.db_constants import (
     TRANSFORMED_DATA_TABLE_NAME
 )
 import pandas as pd
-from housing_price.logger import logger
 from housing_price.database.db_operations import DataBaseOperation
 from housing_price.pipeline.data_transformation import DataTransformation
 from housing_price.pipeline.data_validation import DataValidation
 
 
 def load_logger():
+    from housing_price.logger import logger
     logging = logger.getChild(__name__)
     return logging
 
@@ -66,7 +66,7 @@ class ValidationTransformation:
                     input_data):
                 self.logger.error(" Invalid column length "
                                   "of the input dataframe ")
-                return
+                return False, "Invalid column length of the input dataframe "
             self.logger.info(" column length of input "
                              "dataframe matched with schema")
 
@@ -76,7 +76,7 @@ class ValidationTransformation:
                 is_invalid_column_names(column_details, input_data)
             if invalid_column_names:
                 self.logger.error(f" Invalid columns : {invalid_col_list}")
-                return 
+                return False, f" Invalid columns : {invalid_col_list}"
             self.logger.info(" Valid column name in input data")
 
             input_data = self.raw_data.convert_column_type(input_data, OBJ_TO_FLOAT_COL)
@@ -85,14 +85,14 @@ class ValidationTransformation:
                 is_nan_present(input_data)
             if nan_invalid_values:
                 self.logger.error(f" Invalid values for columns : {nan_invalid_columns} ")
-                return
+                return False, f" Invalid values for columns : {nan_invalid_columns} "
 
             invalid_dtypes, invalid_dtypes_column = self.raw_data.\
                 is_invalid_data_type(column_details, input_data)
             if invalid_dtypes:
                 self.logger.error(f" INVALID data type "
                                   f"for {invalid_dtypes_column}")
-                return 
+                return False, f" INVALID data type for {invalid_dtypes_column}"
 
             self.logger.info(" Data Validation done , "
                              "Data Transformation started")
@@ -137,7 +137,7 @@ class ValidationTransformation:
                                         TRANSFORMED_DATA_TABLE_NAME
                                         )
 
-            return transformed_data
+            return transformed_data, "GOOD RETURN"
 
         except Exception as e:
             self.logger.error(" Error in Prediction validation")
