@@ -45,7 +45,7 @@ List the prerequisites needed to run your project. Include information about the
 
 ## Usage
 1) set path using set PYTHONPATH="complete path" # complete directory untill root
-1) run ```housing_price/database/one_timer.py``` to create tables and databse. This is one time activity usually done by admin.
+1) run ```python housing_price/database/one_timer.py``` to create tables and databse. This is one time activity usually done by admin.
 2) Once the installation is done run the below command to start the API.
 
    ```python app.py```
@@ -58,24 +58,6 @@ List the prerequisites needed to run your project. Include information about the
               
 
   ```app.py``` take single record as input and will return predicted value ('MEDIAN_HOUSE_PRICE').
-
-Sample input record:
-```
-longitude: -122.64
-latitude: 38.01
-housing_median_age: 36.0
-total_rooms: 1336.0
-total_bedrooms: 258.0
-population: 678.0
-households: 249.0
-median_income: 5.5789
-ocean_proximity: 'NEAR OCEAN'
-```
-
-Output : `320201.58554044`
-
-   ```test_app.py``` have some positive and negative test cases.
-   for negative test cases.
 
    Note: Please use below column name only in input features.
           There are checks to validate the columns name in the program.
@@ -97,7 +79,46 @@ name check then we can comment the code in comment
 ```is_invalid_column_names()``` call in 
 validation_transformation.py.
 
-4) To run all th test case. type ```pytest -v``` from root directory.
+Sample input record:
+```
+longitude: -122.64
+latitude: 38.01
+housing_median_age: 36.0
+total_rooms: 1336.0
+total_bedrooms: 258.0
+population: 678.0
+households: 249.0
+median_income: 5.5789
+ocean_proximity: 'NEAR OCEAN'
+```
+
+Output : `320201.58554044`
+
+The sample input should be converted into dictionary and should be passed to 
+```request.post()``` call (Please check test_app.py for example)
+```
+ { 'longitude': -122.64, 
+ 'latitude': 38.01, 
+ 'housing_median_age': 36.0,
+ 'total_rooms': '1336.0', 
+ 'total_bedrooms': 258.0, 
+ 'population': 678.0,
+  'households': 249.0, 
+  'median_income': 5.5789, 
+  'ocean_proximity': 'NEAR OCEAN'}
+  ```
+
+API will return response object.
+1) On success, ```response.status_code``` will be 200 
+   and to get predicted value use ```response.json()['MEDIAN_HOUSE_PRICE'])```
+2) On Failure,```response.status_code``` will be 999 
+   and ```response.json()['error message']``` to get ERROR MESSAGE.
+
+
+   ```test_app.py``` have some positive and negative test cases.
+
+
+4) To run all th test case. run ```pytest -v``` from root directory.
 
 
 ### Project Structure

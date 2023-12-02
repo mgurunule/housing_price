@@ -120,10 +120,10 @@ class ValidationTransformation:
 
             self.logger.info(" Re-arranging columns done")
             # columns name contain > and space which is not allowed in
-            # databse, so re-naming them
+            # database, so re-naming them
 
             transformed_data.rename(columns=RENAMING_COL_FOR_DB, inplace=True)
-            self.logger.info(" Re-naming columns for databse done")
+            self.logger.info(" Re-naming columns for database done")
             self.logger.info(" Data transformation done")
 
             #############################################################
